@@ -30,8 +30,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
+
+        var apikey = "996cc6c2"
         $("#movieForm").submit(function(event){
             event.preventDefault()
+
+            var movie = $("movie").val()
+
+            var url = "http://www.omdbapi.com/?apikey="+apikey
+
         })
     })
 
