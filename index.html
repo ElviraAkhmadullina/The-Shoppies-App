@@ -7,24 +7,23 @@
         <link rel = "stylesheet" href ="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
 
-<body>
-    <div class = "container">
-        <h1 class = "text-right">The Shoppies</h1>
-        <form id = "movieForm" autocomplete="off">
-            <div class="form-group">
-                <label for="Movie">Movie Title</label>
-                <input class="form-control" type = "text" id="movie" placeholder="Movie...">
-            </div>
+    <body>
+        <div class = "container">
+            <h1 class = "text-left">The Shoppies</h1>
+            <form id = "movieForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="Movie">Movie Title</label>
+                    <input class="form-control" type = "text" id="movie" placeholder="Movie...">
+                </div>
 
-        </form>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-success btn-toolbar">
-            Serch Movie
-        </button>
-
-    </div>
-
+                <div class="form-group">
+                    <button class="btn btn-danger btn-block">
+                        Serch Movie
+                    </button>
+                </div>
+            </form>
+            <div id="result"></div>
+        </div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,12 +31,30 @@
     $(document).ready(function(){
 
         var apikey = "996cc6c2"
+       
         $("#movieForm").submit(function(event){
             event.preventDefault()
 
-            var movie = $("movie").val()
+            var movie = $("#movie").val()
+            var result = ""
 
-            var url = "http://www.omdbapi.com/?apikey="+apikey
+            var url = "http://www.omdbapi.com/?apikey=" + apikey
+
+            $.ajax({
+                method:'GET',
+                url:url+"&t=" + movie,
+                success:function(data){
+                    console.log(data)
+
+                    result =   `
+
+                    <img style="float:left" class="img-thumbnail" width="200" height="200" src="${data.Poster}"/>
+
+                    
+                    `
+                   $("#result").html(result)
+                }
+            })
 
         })
     })
