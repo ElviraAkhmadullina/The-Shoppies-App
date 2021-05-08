@@ -31,10 +31,27 @@ $(document).ready(function () {
       result = `
       <div class = "item"> 
       <p>${data.Search[i].Title} (${data.Search[i].Year})</p>
-      <button type="button" onClick="add(this.parentNode)" class="btn btn-outline-info">nominate</button>
+      <button type="button" onClick="add(this.parentNode)" class="btn btn-outline-info">Nominate</button>
       </div>`;
       $("#result").append(result);
     }
+  }
+
+  function remove(element) {
+    element.parentNode.removeChild(element);
+  }
+  
+  function add(element) {
+    console.log(element.children[0]);
+    copyElement = `
+    <div class = "item"> 
+    ${element.children[0].innerHTML}
+    <button type="button" onClick="remove(this.parentNode)" class="btn btn-outline-info">delete</button>
+    </div>`;
+
+  
+
+      $("#nominations").append(copyElement);
   }
   
  
